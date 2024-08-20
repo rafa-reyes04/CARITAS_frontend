@@ -11,6 +11,7 @@
 		FB6F28DB2C6FAB0A00201296 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6F28DA2C6FAB0A00201296 /* ContentView.swift */; };
 		FB6F28DD2C6FAB0E00201296 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB6F28DC2C6FAB0E00201296 /* Assets.xcassets */; };
 		FB6F28E02C6FAB0E00201296 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB6F28DF2C6FAB0E00201296 /* Preview Assets.xcassets */; };
+		FB8514772C74F2CE00EA1CAE /* NavBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8514762C74F2CE00EA1CAE /* NavBarView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +20,7 @@
 		FB6F28DA2C6FAB0A00201296 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		FB6F28DC2C6FAB0E00201296 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FB6F28DF2C6FAB0E00201296 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		FB8514762C74F2CE00EA1CAE /* NavBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavBarView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +55,7 @@
 			children = (
 				FB6F28D82C6FAB0A00201296 /* CARITAS_frontendApp.swift */,
 				FB6F28DA2C6FAB0A00201296 /* ContentView.swift */,
+				FB8514762C74F2CE00EA1CAE /* NavBarView.swift */,
 				FB6F28DC2C6FAB0E00201296 /* Assets.xcassets */,
 				FB6F28DE2C6FAB0E00201296 /* Preview Content */,
 			);
@@ -138,6 +141,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FB6F28DB2C6FAB0A00201296 /* ContentView.swift in Sources */,
+				FB8514772C74F2CE00EA1CAE /* NavBarView.swift in Sources */,
 				FB6F28D92C6FAB0A00201296 /* CARITAS_frontendApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
