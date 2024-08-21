@@ -11,7 +11,7 @@ import SwiftUI
 struct CARITAS_frontendApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MainView()
         }
     }
 }
