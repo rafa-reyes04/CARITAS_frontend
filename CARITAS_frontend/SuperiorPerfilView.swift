@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-struct FotoPerfilView: View {
+struct SuperiorPerfilView: View {
     var body: some View {
-        VStack {
+        ZStack {
             Circle()
                 .trim(from: 0.0, to: 0.5)
                 .frame(width: 600)
@@ -19,5 +19,5 @@ struct FotoPerfilView: View {
 }
 
 #Preview {
-    FotoPerfilView()
+    SuperiorPerfilView()
 }

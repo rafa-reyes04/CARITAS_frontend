@@ -9,11 +9,10 @@ import SwiftUI
 
 struct PerfilView: View {
     var body: some View {
-        Text("Pagina de Perfil")
-            .navigationBarBackButtonHidden(true)
+        SuperiorPerfilView()
     }
+    
 }
-
 #Preview {
     PerfilView()
 }
