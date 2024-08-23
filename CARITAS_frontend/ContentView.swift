@@ -53,7 +53,7 @@ struct ContentView: View {
                         }
                     }) {
                         Text("Entrar")
-                            .frame(width: 200, height: 50)
+                            .frame(width: 300, height: 50)
                             .background(Color.orange)
                             .foregroundColor(.black)
                             .bold()
