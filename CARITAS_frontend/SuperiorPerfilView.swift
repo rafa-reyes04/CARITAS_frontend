@@ -5,10 +5,9 @@ struct SuperiorPerfilView: View {
     var body: some View {
         ZStack {
             
-            Circle()
+            Ellipse()
                 .fill(Color(red: 0/255, green: 156/255, blue: 166/255))
-                .frame(width: 1000, height: 1000)
-                .offset(x: 0, y: -700)
+                .frame(width: 600, height: 300)
                 .ignoresSafeArea()
             
             
@@ -16,19 +15,19 @@ struct SuperiorPerfilView: View {
                     .font(.title)
                     .bold()
                     .foregroundColor(.white)
-                    .offset(x: 0, y: -300)
+                    .offset(y: 40)
 
                 ZStack{
                     Circle()
                         .fill(Color(.black))
                         .frame(width: 150, height: 150)
-                        .offset(x: 0, y: -300)
+                        .offset(y: 40)
                     
                     Image(systemName: "person.crop.circle.fill")
                         .resizable()
                         .frame(width: 140, height: 140)
                         .foregroundColor(.white)
-                        .offset(x: 0, y: -300)
+                        .offset(y: 40)
                 }
             
             .padding(.top, 200)

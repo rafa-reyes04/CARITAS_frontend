@@ -40,7 +40,7 @@ struct MainView: View {
                     selectedTab = 1
                 }) {
                     VStack {
-                        Image(systemName: "storefront")
+                        Image(systemName: "cart")
                             .resizable()
                             .frame(width: 32, height: 32)
                             .foregroundColor(selectedTab == 1 ? .blue : .gray)

@@ -8,31 +8,52 @@
 import SwiftUI
 
 struct PerfilView: View {
-    @State var nombre:String = ""
-    @State var apellido:String = ""
+    @State var nombre: String = "Nombre Del Usuario"
+    @State var peso: Float = 0.0
+    @State var altura: Float = 0.0
+    @State var presion: Int = 0
     
-    @State var peso:Float = 0.0
-    @State var presion:String = ""
-    @State var tipo_sangre:String = ""
-    @State var altura:Float = 0.0
-
-
-
-
     var body: some View {
-        VStack{
-            SuperiorPerfilView(nombrePerfil: "Juan Perez")
-                .padding(.top, 100)
+        VStack {
+            // Sección superior con el nombre y la imagen de perfil
+            SuperiorPerfilView(nombrePerfil: nombre)
+                .padding(.top, -160)
+                .padding(.bottom, 60)
             
-            InfoPerfilView(infoPerfil: "Peso", imagenInfoPerfil: "figure")
-            InfoPerfilView(infoPerfil: "Altura", imagenInfoPerfil: "figure.stand")
-            InfoPerfilView(infoPerfil: "Tipo de Sangre", imagenInfoPerfil: "ivfluid.bag")
-            InfoPerfilView(infoPerfil: "Presion", imagenInfoPerfil: "waveform.path.ecg.rectangle")
             
+            
+            
+            // Información del perfil
+            VStack(alignment: .center, spacing: 0) {
+                
+                InfoPerfilView(infoPerfil: "Usuario: \(nombre)", imagenInfoPerfil: "person.circle")
+                Spacer()
+                InfoPerfilView(infoPerfil: "Peso: \(String(format: "%.2f", peso)) kg", imagenInfoPerfil: "figure")
+                Spacer()
+                InfoPerfilView(infoPerfil: "Altura: \(String(format: "%.2f", altura)) m", imagenInfoPerfil: "figure.stand")
+                Spacer()
+                InfoPerfilView(infoPerfil: "Presión: \(presion) mmHg", imagenInfoPerfil: "waveform.path.ecg.rectangle")
+                Spacer()
+            }
+
+            
+            // Espacio para el código QR
             Spacer()
+            VStack() {
+                Text("Código QR")
+                    .font(.headline)
+                
+                Image(systemName: "qrcode")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 180, height: 180)
+            }
+            Spacer()
+            Spacer()
+            
+            
         }
     }
-    
 }
 #Preview {
     PerfilView()

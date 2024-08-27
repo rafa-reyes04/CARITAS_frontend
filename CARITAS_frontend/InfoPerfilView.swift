@@ -12,13 +12,19 @@ struct InfoPerfilView: View {
     @State var imagenInfoPerfil:String = "figure"
     var body: some View {
         VStack{
-            Divider()
-            HStack{
+            HStack(alignment: .center){
+                Spacer()
                 Image(systemName: imagenInfoPerfil)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 30, height: 30)
                 Text(infoPerfil)
+                    .font(.subheadline)
+                    .fontWeight(.bold)
+                    .multilineTextAlignment(.center)
                 Spacer()
             
-            } .padding(.horizontal)
+            }
             Divider()
         }
     }
