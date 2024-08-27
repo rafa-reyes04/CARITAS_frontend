@@ -31,7 +31,7 @@ struct MainView: View {
                         Image(systemName: "house")
                             .resizable()
                             .frame(width: 32, height: 28)
-                            .foregroundColor(selectedTab == 0 ? .blue : .gray)
+                            .foregroundColor(selectedTab == 0 ? Color(red: 0/255, green: 156/255, blue: 166/255) : .gray)
                     }
                 }
                 Spacer()
@@ -42,7 +42,7 @@ struct MainView: View {
                         Image(systemName: "cart")
                             .resizable()
                             .frame(width: 32, height: 32)
-                            .foregroundColor(selectedTab == 1 ? .blue : .gray)
+                            .foregroundColor(selectedTab == 1 ? Color(red: 0/255, green: 156/255, blue: 166/255) : .gray)
                     }
                 }
                 Spacer()
@@ -53,7 +53,7 @@ struct MainView: View {
                         Image(systemName: "person.circle")
                             .resizable()
                             .frame(width: 32, height: 32)
-                            .foregroundColor(selectedTab == 2 ? .blue : .gray)
+                            .foregroundColor(selectedTab == 2 ? Color(red: 0/255, green: 156/255, blue: 166/255) : .gray)
                     }
                 }
                 Spacer()
