@@ -50,6 +50,7 @@ struct PerfilView: View {
             }
             Spacer()
             Spacer()
+            Spacer()
             
             
         }

@@ -5,7 +5,7 @@ struct MainView: View {
     
     var body: some View {
         VStack {
-            // Puedes ajustar este Spacer para tener más espacio en la parte superior.
+
             Spacer(minLength: 20)
             
             // La vista seleccionada se renderiza aquí.
@@ -20,7 +20,6 @@ struct MainView: View {
                 DashboardView()
             }
             
-            // Ajusta este Spacer para que los botones de la barra de navegación tengan más espacio debajo.
             Spacer(minLength: 40)
             
             HStack {
@@ -60,7 +59,7 @@ struct MainView: View {
                 Spacer()
                     
             }
-            .padding(.bottom, 30)
+            .padding(.bottom, 25)
             .padding(.top, 20) // Ajusta el padding inferior para más espacio.
             .background(Color.white.shadow(radius: 10))
             .navigationBarBackButtonHidden(true)
