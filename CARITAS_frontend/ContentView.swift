@@ -5,6 +5,8 @@ struct ContentView: View {
     @State var password: String = ""
     
     @State private var alerta = false
+    @State private var alerta2 = false
+
     @State private var isLoggedIn = false
     
     var body: some View {
@@ -48,8 +50,10 @@ struct ContentView: View {
                     Button(action: {
                         if username.isEmpty || password.isEmpty {
                             alerta.toggle()
-                        } else {
+                        } else if (username == "User01" && password == "password") {
                             isLoggedIn = true
+                        } else {
+                            alerta2.toggle()
                         }
                     }) {
                         Text("Entrar")
@@ -64,6 +68,10 @@ struct ContentView: View {
                     Spacer()
                     
                         .alert("Tienes que ingresar todos los datos", isPresented: $alerta) {
+                            Button("Ok") {}
+                        }
+                    
+                        .alert("Datos incorrectos", isPresented: $alerta2) {
                             Button("Ok") {}
                         }
                 }
