@@ -5,26 +5,47 @@ import SwiftUI
 //                 Pendiente Revisar              //
 ////////////////////////////////////////////////////
 
+// Extensión para inicializar colores a partir de valores hexadecimales
+extension Color {
+    init(hex: String) {
+        let scanner = Scanner(string: hex) // Crea un escáner para analizar la cadena hexadecimal
+        scanner.currentIndex = scanner.string.index(after: scanner.string.startIndex) // Ajusta el índice para omitir el primer carácter (#)
+        
+        var rgbValue: UInt64 = 0 // Declara una variable para almacenar el valor RGB
+        scanner.scanHexInt64(&rgbValue) // Analiza la cadena hexadecimal y almacena el valor en rgbValue
+        
+        // Extrae el componente rojo del valor RGB
+        let red = Double((rgbValue & 0xFF0000) >> 16) / 255.0
+        // Extrae el componente verde del valor RGB
+        let green = Double((rgbValue & 0x00FF00) >> 8) / 255.0
+        // Extrae el componente azul del valor RGB
+        let blue = Double(rgbValue & 0x0000FF) / 255.0
+        
+        // Inicializa el color con los componentes rojo, verde y azul
+        self.init(red: red, green: green, blue: blue)
+    }
+}
+
 struct ContentView: View {
-    @State private var fecha: String = ""
-    @State private var hora: String = ""
-    @State private var cupo: String = ""
-    @State private var puntos: String = ""
-    @State private var descripcion: String = ""
-    @State private var isRegistered: Bool = false // Variable de estado para el condicional
+    @State private var fecha: String = "" // Variable de estado para almacenar la fecha
+    @State private var hora: String = "" // Variable de estado para almacenar la hora
+    @State private var cupo: String = "" // Variable de estado para almacenar el cupo
+    @State private var puntos: String = "" // Variable de estado para almacenar los puntos
+    @State private var descripcion: String = "" // Variable de estado para almacenar la descripción
+    @State private var isRegistered: Bool = false // Variable de estado para controlar si está registrado
 
     var body: some View {
         NavigationView {
             VStack(alignment: .leading) {
-                backButton
+                backButton // Botón de regreso
                     .padding(.top, 20)
                 
                 Spacer().frame(height: 77) // Espacio para posicionar el título
                 
                 Text("Título")
-                    .font(.custom("Lato", size: 30))
-                    .foregroundColor(Color(hex: "#3D3F40"))
-                    .frame(width: 301, height: 74, alignment: .leading)
+                    .font(.custom("Lato", size: 30)) // Establece la fuente y el tamaño del texto
+                    .foregroundColor(Color(hex: "#3D3F40")) // Establece el color del texto
+                    .frame(width: 301, height: 74, alignment: .leading) // Establece el tamaño y la alineación del texto
                     .padding(.leading, 34)
                 
                 Spacer().frame(height: 20) // Espacio para posicionar la imagen
@@ -32,11 +53,11 @@ struct ContentView: View {
                 AsyncImage(url: URL(string: "https://example.com/image.jpg")) { image in
                     image
                         .resizable()
-                        .frame(width: 300, height: 133)
-                        .cornerRadius(33.33)
+                        .frame(width: 300, height: 133) // Establece el tamaño de la imagen
+                        .cornerRadius(33.33) // Establece el radio de las esquinas
                         .position(x: 38 + 150, y: 17 + 66.5) // Ajuste de posición
                 } placeholder: {
-                    ProgressView()
+                    ProgressView() // Muestra un indicador de progreso mientras se carga la imagen
                 }
                 .frame(width: 300, height: 133)
                 
@@ -161,7 +182,7 @@ struct ContentView: View {
             .background(Color(hex: "#D1E0D7").ignoresSafeArea())
             .navigationBarHidden(true)
             .onAppear {
-                fetchData()
+                fetchData() // Llama a la función para obtener datos de la API cuando la vista aparece
             }
         }
     }
@@ -169,14 +190,15 @@ struct ContentView: View {
     var backButton: some View {
         Button(action: {
             // Acción para regresar a la vista anterior
+            // Aquí puedes agregar la lógica para navegar hacia atrás
         }) {
             Text("Back")
-                .foregroundColor(.white)
-                .padding()
-                .background(Color(hex: "#2000AD"))
-                .cornerRadius(8)
+                .foregroundColor(.white) // Color del texto del botón
+                .padding() // Espaciado interno del botón
+                .background(Color(hex: "#2000AD")) // Color de fondo del botón
+                .cornerRadius(8) // Bordes redondeados del botón
         }
-        .padding(.leading, 34)
+        .padding(.leading, 34) // Espaciado a la izquierda del botón
     }
     
     func fetchData() {
@@ -210,20 +232,4 @@ struct APIResponse: Codable {
     let puntos: String // Agrega esta propiedad para el valor de puntos
     let descripcion: String // Agrega esta propiedad para la descripción
     let isRegistered: Bool // Agrega esta propiedad para el condicional
-}
-
-extension Color {
-    init(hex: String) {
-        let scanner = Scanner(string: hex)
-        scanner.currentIndex = scanner.string.index(after: scanner.string.startIndex)
-        
-        var rgbValue: UInt64 = 0
-        scanner.scanHexInt64(&rgbValue)
-        
-        let red = Double((rgbValue & 0xFF0000) >> 16) / 255.0
-        let green = Double((rgbValue & 0x00FF00) >> 8) / 255.0
-        let blue = Double(rgbValue & 0x0000FF) / 255.0
-        
-        self.init(red: red, green: green, blue: blue)
-    }
 }
