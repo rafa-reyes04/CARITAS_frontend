@@ -50,10 +50,8 @@ struct ContentView: View {
                     Button(action: {
                         if username.isEmpty || password.isEmpty {
                             alerta.toggle()
-                        } else if (username == "User01" && password == "password") {
-                            isLoggedIn = true
                         } else {
-                            alerta2.toggle()
+                            loginUser(username: username, password: password)
                         }
                     }) {
                         Text("Entrar")
@@ -66,21 +64,73 @@ struct ContentView: View {
                     
                     Spacer()
                     Spacer()
-                    
-                        .alert("Tienes que ingresar todos los datos", isPresented: $alerta) {
-                            Button("Ok") {}
-                        }
-                    
-                        .alert("Datos incorrectos", isPresented: $alerta2) {
-                            Button("Ok") {}
-                        }
                 }
                 .padding()
+                .alert("Tienes que ingresar todos los datos", isPresented: $alerta) {
+                    Button("Ok") {}
+                }
+                .alert("Datos incorrectos", isPresented: $alerta2) {
+                    Button("Ok") {}
+                }
                 .navigationDestination(isPresented: $isLoggedIn) {
                     MainView() // Navega a MainView cuando isLoggedIn sea true
                 }
             }
         }
+    }
+    
+    // Función para realizar la solicitud de login
+    func loginUser(username: String, password: String) {
+        guard let url = URL(string: "http://127.0.0.1:3000/login") else { return }
+        
+        // Crear el cuerpo de la solicitud con el usuario y la contraseña
+        let body: [String: String] = ["usuario": username, "contrasena": password]
+        
+        // Convertir el cuerpo a JSON
+        let jsonData = try? JSONSerialization.data(withJSONObject: body)
+        
+        // Configurar la solicitud
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = jsonData
+        
+        // Realizar la solicitud
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            // Verificar si hubo error
+            guard let data = data, error == nil else {
+                print("Error en la solicitud: \(String(describing: error))")
+                return
+            }
+            
+            // Procesar la respuesta
+            if let httpResponse = response as? HTTPURLResponse {
+                if httpResponse.statusCode == 200 {
+                    do {
+                        // Decodificar la respuesta JSON
+                        if let jsonResponse = try JSONSerialization.jsonObject(with: data) as? [String: Any] {
+                            // Revisar si hay un mensaje de éxito
+                            if let message = jsonResponse["message"] as? String, message == "Login exitoso" {
+                                DispatchQueue.main.async {
+                                    isLoggedIn = true
+                                }
+                            } else {
+                                // Si hay un error de credenciales
+                                DispatchQueue.main.async {
+                                    alerta2.toggle()
+                                }
+                            }
+                        }
+                    } catch {
+                        print("Error al procesar la respuesta JSON: \(error)")
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        alerta2.toggle() // Error de credenciales
+                    }
+                }
+            }
+        }.resume()
     }
 }
 

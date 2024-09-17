@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D085EA4F2C99BDE3006EA430 /* UsuarioModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D085EA4E2C99BDE3006EA430 /* UsuarioModel.swift */; };
 		D0D816A22C76BE620040E26A /* SuperiorPerfilView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D816A12C76BE620040E26A /* SuperiorPerfilView.swift */; };
 		FB6DAF082C78E4A2005F16BC /* InfoPerfilView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6DAF072C78E4A2005F16BC /* InfoPerfilView.swift */; };
 		FB6F28D92C6FAB0A00201296 /* CARITAS_frontendApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6F28D82C6FAB0A00201296 /* CARITAS_frontendApp.swift */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D085EA4E2C99BDE3006EA430 /* UsuarioModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsuarioModel.swift; sourceTree = "<group>"; };
 		D0D816A12C76BE620040E26A /* SuperiorPerfilView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperiorPerfilView.swift; sourceTree = "<group>"; };
 		FB6DAF072C78E4A2005F16BC /* InfoPerfilView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoPerfilView.swift; sourceTree = "<group>"; };
 		FB6F28D52C6FAB0A00201296 /* CARITAS_frontend.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CARITAS_frontend.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -44,6 +46,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D085EA4D2C99BDCF006EA430 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D085EA4E2C99BDE3006EA430 /* UsuarioModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		FB6F28CC2C6FAB0A00201296 = {
 			isa = PBXGroup;
 			children = (
@@ -63,6 +73,7 @@
 		FB6F28D72C6FAB0A00201296 /* CARITAS_frontend */ = {
 			isa = PBXGroup;
 			children = (
+				D085EA4D2C99BDCF006EA430 /* Model */,
 				FB6F28D82C6FAB0A00201296 /* CARITAS_frontendApp.swift */,
 				FB6F28DA2C6FAB0A00201296 /* ContentView.swift */,
 				FBE4FC4D2C763AF80042880E /* DashboardView.swift */,
@@ -162,6 +173,7 @@
 				FBE4FC4E2C763AF80042880E /* DashboardView.swift in Sources */,
 				FB6F28DB2C6FAB0A00201296 /* ContentView.swift in Sources */,
 				FBE4FC4C2C763A000042880E /* TiendaView.swift in Sources */,
+				D085EA4F2C99BDE3006EA430 /* UsuarioModel.swift in Sources */,
 				FB6F28D92C6FAB0A00201296 /* CARITAS_frontendApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
