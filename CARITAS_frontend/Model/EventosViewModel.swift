@@ -16,17 +16,23 @@ class EventosViewModel: ObservableObject {
     }
 
     func fetchEventos() {
-        guard let url = URL(string: "https://your-api-url.com/eventos") else { return }
+        guard let url = URL(string: "http://127.0.0.1:3000/events") else { return }
         
         URLSession.shared.dataTask(with: url) { data, response, error in
+            if let error = error {
+                print("Error fetching data: \(error)")
+                return
+            }
+            
             if let data = data {
                 do {
                     let decodedData = try JSONDecoder().decode([String: [Evento]].self, from: data)
                     DispatchQueue.main.async {
+                        print("Decoded Data: \(decodedData)")  // Check the decoded data
                         self.eventos = decodedData["Eventos"] ?? []
                     }
                 } catch {
-                    print("Error decoding JSON: \(error)")
+                    print("Error decoding JSON: \(error)") // Check if there's a decoding error
                 }
             }
         }.resume()

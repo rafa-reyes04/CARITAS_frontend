@@ -20,11 +20,11 @@ struct EventoSquareView: View {
 
 #Preview {
     EventoSquareView(evento: Evento(
+        id: 1,
         CUPO: "50",
         DESCRIPCION: "Aprender sobre nutrición saludable.",
         FECHA: "2024-10-05",
         HORA: "10:00:00",
-        ID_EVENTO: 1,
         PUNTOS: "10",
         TIPO_EVENTO: "Nutrición",
         TITULO: "Taller de Nutrición"
