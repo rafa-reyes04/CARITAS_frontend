@@ -108,17 +108,46 @@ struct ContentView: View {
                 if httpResponse.statusCode == 200 {
                     do {
                         // Decodificar la respuesta JSON
-                        if let jsonResponse = try JSONSerialization.jsonObject(with: data) as? [String: Any] {
-                            // Revisar si hay un mensaje de éxito
-                            if let message = jsonResponse["message"] as? String, message == "Login exitoso" {
-                                DispatchQueue.main.async {
-                                    isLoggedIn = true
+                        if let jsonResponse = try JSONSerialization.jsonObject(with: data) as? [String: Any],
+                           let userData = jsonResponse["user"] as? [String: Any] {
+                            
+                            // Crear instancia del usuario desde los datos de la respuesta
+                            let usuario = Usuario(
+                                id: userData["ID_USUARIO"] as? Int ?? 0,
+                                nombre: userData["NOMBRE"] as? String ?? "",
+                                aPaterno: userData["A_PATERNO"] as? String ?? "",
+                                aMaterno: userData["A_MATERNO"] as? String ?? "",
+                                peso: userData["PESO"] as? Float ?? 0.0,
+                                altura: userData["ALTURA"] as? Float ?? 0.0,
+                                presion: userData["PRESION"] as? String ?? "",
+                                puntaje: Int(userData["PUNTAJE"] as? String ?? "0") ?? 0,
+                                usuario: userData["USUARIO"] as? String ?? ""
+                            )
+                            
+                            // Guardar la información del usuario en UserDefaults
+                            if let encodedUser = try? JSONEncoder().encode(usuario) {
+                                UserDefaults.standard.set(encodedUser, forKey: "usuarioLogeado")
+                                
+                                // Imprimir los valores para validar que se guardaron correctamente
+                                print("Usuario guardado correctamente en UserDefaults.")
+                                if let savedUserData = UserDefaults.standard.data(forKey: "usuarioLogeado"),
+                                   let savedUser = try? JSONDecoder().decode(Usuario.self, from: savedUserData) {
+                                    print("Datos del usuario guardados:")
+                                    print("ID: \(savedUser.id)")
+                                    print("Nombre: \(savedUser.nombre)")
+                                    print("Apellido Paterno: \(savedUser.aPaterno)")
+                                    print("Apellido Materno: \(savedUser.aMaterno)")
+                                    print("Peso: \(savedUser.peso)")
+                                    print("Altura: \(savedUser.altura)")
+                                    print("Presión: \(savedUser.presion)")
+                                    print("Puntaje: \(savedUser.puntaje)")
+                                    print("Usuario: \(savedUser.usuario)")
                                 }
-                            } else {
-                                // Si hay un error de credenciales
-                                DispatchQueue.main.async {
-                                    alerta2.toggle()
-                                }
+                            }
+                            
+                            // Cambiar el estado para navegar a MainView
+                            DispatchQueue.main.async {
+                                isLoggedIn = true
                             }
                         }
                     } catch {

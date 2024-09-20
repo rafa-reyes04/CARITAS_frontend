@@ -15,4 +15,6 @@ struct Usuario: Codable {
     var peso: Float
     var altura: Float
     var presion: String
+    var puntaje: Int
+    var usuario: String
 }
