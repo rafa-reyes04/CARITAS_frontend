@@ -2,6 +2,7 @@ import SwiftUI
 
 struct MainView: View {
     @State private var selectedTab: Int = 0
+    let user: Usuario? = loadUser()
     
     var body: some View {
         VStack {
@@ -11,13 +12,13 @@ struct MainView: View {
             // La vista seleccionada se renderiza aquí.
             switch selectedTab {
             case 0:
-                DashboardView()
+                DashboardView(usuario: user)
             case 1:
                 TiendaView()
             case 2:
                 PerfilView()
             default:
-                DashboardView()
+                DashboardView(usuario: user)
             }
             
             Spacer(minLength: 40)
