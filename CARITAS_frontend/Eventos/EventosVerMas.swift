@@ -105,24 +105,88 @@ struct DetalleEvento: View {
     }
     
     private var actionButton: some View {
-        Button(action: {
-            if !registered {
-                // Llamada para registrarse al evento
-                registrarEvento(idUsuario: usuario!.id, idEvento: eventData.id)
+        VStack {
+            if registered {
+                // Botón para eliminar el registro si el usuario ya está registrado
+                Button(action: {
+                    // Llamada para eliminar el registro
+                    eliminarRegistro(idUsuario: usuario!.id, idEvento: eventData.id)
+                }) {
+                    Text("Eliminar Registro")
+                        .font(.custom("SourceSansPro-Bold", size: 30))
+                        .foregroundColor(.white)
+                        .frame(maxWidth: 300)
+                        .padding()
+                        .background(Color(hex: "#FF7375")) // Botón rojo para eliminar
+                        .cornerRadius(25)
+                }
             } else {
-                // Aquí puedes manejar la cancelación del registro si lo deseas
+                // Botón para registrarse si el usuario no está registrado
+                Button(action: {
+                    // Llamada para registrarse al evento
+                    registrarEvento(idUsuario: usuario!.id, idEvento: eventData.id)
+                }) {
+                    Text("Registrarse")
+                        .font(.custom("SourceSansPro-Bold", size: 30))
+                        .foregroundColor(.white)
+                        .frame(maxWidth: 300)
+                        .padding()
+                        .background(Color(hex: "#00CF46")) // Botón verde para registrarse
+                        .cornerRadius(25)
+                }
             }
-        }) {
-            Text(registered ? "Cancelar Registro" : "Registrarse")
-                .font(.custom("SourceSansPro-Bold", size: 30))
-                .foregroundColor(.white)
-                .frame(maxWidth: 300)
-                .padding()
-                .background(registered ? Color(hex: "#FF7375") : Color(hex: "#00CF46"))
-                .cornerRadius(25)
         }
         .padding(.leading, 40)
         .padding(.trailing, 40)
+    }
+    
+    //Funcion eliminar registro
+    private func eliminarRegistro(idUsuario: Int, idEvento: Int) {
+        guard let url = URL(string: "http://127.0.0.1:3000/cancelar_evento") else {
+            print("URL inválida")
+            return
+        }
+
+        // Crear el cuerpo de la solicitud
+        let body: [String: Any] = [
+            "id_usuario": idUsuario,
+            "id_evento": idEvento
+        ]
+        
+        // Convertir el body a JSON
+        let jsonData = try? JSONSerialization.data(withJSONObject: body)
+        
+        // Configurar la solicitud
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"  // Usamos POST porque así está implementado en el servidor
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = jsonData
+        
+        // Hacer la solicitud
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                print("Error al eliminar registro: \(error)")
+                return
+            }
+            
+            // Verificar el código de respuesta
+            if let httpResponse = response as? HTTPURLResponse {
+                if httpResponse.statusCode == 200 {
+                    // Eliminación exitosa
+                    DispatchQueue.main.async {
+                        self.registered = false
+                        self.alertMessage = "Te has dado de baja del evento."
+                        self.showingAlert = true
+                    }
+                } else {
+                    // Manejo de errores
+                    DispatchQueue.main.async {
+                        self.alertMessage = "Ocurrió un error al eliminar el registro."
+                        self.showingAlert = true
+                    }
+                }
+            }
+        }.resume()
     }
     
     // Función para registrar al usuario en el evento
@@ -205,7 +269,7 @@ struct DetailItem: View {
         FECHA: "2024-10-05",
         HORA: "10:00:00",
         PUNTOS: "10",
-        TIPO_EVENTO: "Ejercicio",
+        TIPO_EVENTO: "Nutrición",
         TITULO: "Taller de Nutrición"
     ), usuario: Usuario(
         id: 100,

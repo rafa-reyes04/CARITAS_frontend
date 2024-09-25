@@ -44,7 +44,7 @@ struct EventoSquareView: View {
         FECHA: "2024-10-05",
         HORA: "10:00:00",
         PUNTOS: "10",
-        TIPO_EVENTO: "Ejercicio",
+        TIPO_EVENTO: "Nutrición",
         TITULO: "Taller de Nutrición"
     ))
 }
