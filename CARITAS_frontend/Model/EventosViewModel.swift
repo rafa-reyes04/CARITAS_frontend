@@ -5,7 +5,7 @@ class EventosViewModel: ObservableObject {
     @Published var eventosRegistrados: [Evento] = [] // Lista para los eventos del usuario
 
     init() {
-        fetchEventos()
+       // fetchEventos()
     }
 
     func fetchEventos() {

@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct DashboardView: View {
-    @ObservedObject var eventosViewModel = EventosViewModel()
+    @StateObject var eventosViewModel = EventosViewModel()
     let usuario: Usuario?
 
     var body: some View {
@@ -20,6 +20,7 @@ struct DashboardView: View {
                     .padding(.bottom)
                     .onAppear {
                         eventosViewModel.fetchEventosRegistrados(for: usuario.id)
+                        //eventosViewModel.fetchEventos()
                     }
 
                 VStack(alignment: .leading) {
