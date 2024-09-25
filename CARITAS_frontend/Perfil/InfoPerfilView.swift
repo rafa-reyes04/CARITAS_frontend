@@ -26,6 +26,7 @@ struct InfoPerfilView: View {
             
             }
             Divider()
+            
         }
     }
 }
