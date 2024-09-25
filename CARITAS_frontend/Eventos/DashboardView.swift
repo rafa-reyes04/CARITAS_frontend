@@ -18,18 +18,17 @@ struct DashboardView: View {
                     .frame(height: 150)
                     .cornerRadius(10)
                     .padding(.bottom)
-                    .onAppear {
-                        eventosViewModel.fetchEventosRegistrados(for: usuario.id)
-                        //eventosViewModel.fetchEventos()
+                    .task {
+                        // Llama a la nueva función combinada de manera asíncrona
+                        await eventosViewModel.fetchAllEventos(for: usuario.id)
                     }
-                
 
                 VStack(alignment: .leading) {
                     Text("Mis Eventos")
                         .font(.headline)
                         .padding(.leading, 40)
 
-                    // Condicional para mostrar el mensaje cuando no hay eventos registrados
+                    // Mostrar los eventos registrados
                     if eventosViewModel.eventosRegistrados.isEmpty {
                         Text("No hay eventos registrados por el momento.")
                             .foregroundColor(.gray)
@@ -52,7 +51,7 @@ struct DashboardView: View {
                         .padding(.leading, 40)
                         .padding(.top)
 
-                    // Condicional para mostrar el mensaje cuando no hay eventos disponibles
+                    // Mostrar todos los eventos disponibles
                     if eventosViewModel.eventos.isEmpty {
                         Text("No hay eventos disponibles por el momento.")
                             .foregroundColor(.gray)
