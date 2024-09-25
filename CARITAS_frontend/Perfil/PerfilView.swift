@@ -53,6 +53,9 @@ struct PerfilView: View {
                 Spacer()
                 Spacer()
                 Spacer()
+                Spacer()
+                Spacer()
+                Spacer()
             }
         }
         .onAppear {

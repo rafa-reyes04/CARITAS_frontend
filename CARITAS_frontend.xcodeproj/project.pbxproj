@@ -32,7 +32,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		FB2767592C9DD0E900970DA0 /* Dashboard */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Dashboard; sourceTree = "<group>"; };
 		FB27675A2C9DD12A00970DA0 /* Perfil */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Perfil; sourceTree = "<group>"; };
 		FB27675B2C9DD16D00970DA0 /* Tienda */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Tienda; sourceTree = "<group>"; };
 		FB27675C2C9DD19200970DA0 /* Login */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Login; sourceTree = "<group>"; };
@@ -59,7 +58,6 @@
 				D085EA4E2C99BDE3006EA430 /* UsuarioModel.swift */,
 				FB27674F2C9DC94700970DA0 /* EventosModel.swift */,
 				FB2767512C9DC97D00970DA0 /* EventosViewModel.swift */,
-				FB2767592C9DD0E900970DA0 /* Dashboard */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -121,7 +119,6 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				FB2767592C9DD0E900970DA0 /* Dashboard */,
 				FB27675A2C9DD12A00970DA0 /* Perfil */,
 				FB27675B2C9DD16D00970DA0 /* Tienda */,
 				FB27675C2C9DD19200970DA0 /* Login */,
