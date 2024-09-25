@@ -11,7 +11,7 @@ struct DashboardView: View {
                     .font(.title)
                     .fontWeight(.bold)
                     .padding(.bottom)
-                
+
                 Image(systemName: "photo")
                     .resizable()
                     .scaledToFit()
@@ -27,31 +27,45 @@ struct DashboardView: View {
                         .font(.headline)
                         .padding(.leading, 40)
 
-                    ScrollView(.horizontal, showsIndicators: false) {
-                        HStack(spacing: 10) {
-                            ForEach(eventosViewModel.eventosRegistrados) { item in
-                                NavigationLink(destination: DetalleEvento(eventData: item, usuario: usuario)) {
-                                    EventoSquareView(evento: item)
+                    // Condicional para mostrar el mensaje cuando no hay eventos registrados
+                    if eventosViewModel.eventosRegistrados.isEmpty {
+                        Text("No hay eventos registrados por el momento.")
+                            .foregroundColor(.gray)
+                            .padding(.leading, 20)
+                    } else {
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            HStack(spacing: 10) {
+                                ForEach(eventosViewModel.eventosRegistrados) { item in
+                                    NavigationLink(destination: DetalleEvento(eventData: item, usuario: usuario)) {
+                                        EventoSquareView(evento: item)
+                                    }
                                 }
                             }
+                            .padding(.horizontal)
                         }
-                        .padding(.horizontal)
                     }
-                    
+
                     Text("Eventos Disponibles")
                         .font(.headline)
                         .padding(.leading, 40)
                         .padding(.top)
 
-                    ScrollView(.horizontal, showsIndicators: false) {
-                        HStack(spacing: 10) {
-                            ForEach(eventosViewModel.eventos) { item in
-                                NavigationLink(destination: DetalleEvento(eventData: item, usuario: usuario)) {
-                                    EventoSquareView(evento: item)
+                    // Condicional para mostrar el mensaje cuando no hay eventos disponibles
+                    if eventosViewModel.eventos.isEmpty {
+                        Text("No hay eventos disponibles por el momento.")
+                            .foregroundColor(.gray)
+                            .padding(.leading, 20)
+                    } else {
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            HStack(spacing: 10) {
+                                ForEach(eventosViewModel.eventos) { item in
+                                    NavigationLink(destination: DetalleEvento(eventData: item, usuario: usuario)) {
+                                        EventoSquareView(evento: item)
+                                    }
                                 }
                             }
+                            .padding(.horizontal)
                         }
-                        .padding(.horizontal)
                     }
                 }
             }
@@ -77,3 +91,4 @@ struct DashboardView: View {
         usuario: "616"
     ))
 }
+
