@@ -5,6 +5,8 @@ struct DetalleEvento: View {
     let usuario: Usuario? // Relacionamos con el usuario
     @State private var registered: Bool = false
     @State private var imagenEvento: String = ""
+    @State private var showingAlert: Bool = false
+    @State private var alertMessage: String = ""
     
     var body: some View {
         if let usuario = usuario {
@@ -20,8 +22,11 @@ struct DetalleEvento: View {
                         actionButton
                     }
                     .padding()
+                    .alert(isPresented: $showingAlert) {
+                        Alert(title: Text("Registro"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
+                    }
                 }
-                .onAppear { // Espera un closure sin parámetros
+                .onAppear {
                     verificarRegistro(idUsuario: usuario.id, tituloEvento: eventData.TITULO) { isRegistered in
                         DispatchQueue.main.async {
                             registered = isRegistered
@@ -52,7 +57,7 @@ struct DetalleEvento: View {
     }
     
     private var eventDetails: some View {
-        VStack() {
+        VStack {
             HStack {
                 DetailItem(title: "Fecha", value: eventData.FECHA)
                 Spacer()
@@ -60,7 +65,7 @@ struct DetalleEvento: View {
                 Spacer()
                 DetailItem(title: "Cupo", value: eventData.CUPO)
             }
-            HStack() {
+            HStack {
                 Text(registered ? "Registrado" : "")
                     .font(.custom("Avenir-Heavy", size: 30))
                     .foregroundColor(Color(hex: "#5AB159"))
@@ -70,7 +75,6 @@ struct DetalleEvento: View {
             }.padding(.top, 20)
         }
         .onAppear {
-            // Set the image based on the event type
             if eventData.TIPO_EVENTO == "Nutrición" {
                 imagenEvento = "imagenNutricion"
             } else if eventData.TIPO_EVENTO == "Conferencia" {
@@ -95,15 +99,19 @@ struct DetalleEvento: View {
             Text(eventData.DESCRIPCION)
                 .font(.custom("Lato-Regular", size: 16))
                 .foregroundColor(Color(hex: "#3D3F40"))
-        }.padding(.leading, 40)
+        }
+        .padding(.leading, 40)
         .padding(.trailing, 40)
     }
     
     private var actionButton: some View {
         Button(action: {
-            // Acción del botón
-            
-            registered.toggle()
+            if !registered {
+                // Llamada para registrarse al evento
+                registrarEvento(idUsuario: usuario!.id, idEvento: eventData.id)
+            } else {
+                // Aquí puedes manejar la cancelación del registro si lo deseas
+            }
         }) {
             Text(registered ? "Cancelar Registro" : "Registrarse")
                 .font(.custom("SourceSansPro-Bold", size: 30))
@@ -115,6 +123,61 @@ struct DetalleEvento: View {
         }
         .padding(.leading, 40)
         .padding(.trailing, 40)
+    }
+    
+    // Función para registrar al usuario en el evento
+    private func registrarEvento(idUsuario: Int, idEvento: Int) {
+        guard let url = URL(string: "http://127.0.0.1:3000/registrar_evento") else {
+            print("URL inválida")
+            return
+        }
+
+        // Crear el cuerpo de la solicitud
+        let body: [String: Any] = [
+            "id_usuario": idUsuario,
+            "id_evento": idEvento
+        ]
+        
+        // Convertir el body a JSON
+        let jsonData = try? JSONSerialization.data(withJSONObject: body)
+        
+        // Configurar la solicitud
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = jsonData
+        
+        // Hacer la solicitud
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                print("Error al registrar: \(error)")
+                return
+            }
+            
+            // Verificar el código de respuesta
+            if let httpResponse = response as? HTTPURLResponse {
+                if httpResponse.statusCode == 201 {
+                    // Registro exitoso
+                    DispatchQueue.main.async {
+                        self.registered = true
+                        self.alertMessage = "Te has registrado exitosamente en el evento."
+                        self.showingAlert = true
+                    }
+                } else if httpResponse.statusCode == 400 {
+                    // No hay cupo disponible
+                    DispatchQueue.main.async {
+                        self.alertMessage = "No hay cupo disponible para este evento."
+                        self.showingAlert = true
+                    }
+                } else {
+                    // Otro error
+                    DispatchQueue.main.async {
+                        self.alertMessage = "Ocurrió un error al registrarte en el evento."
+                        self.showingAlert = true
+                    }
+                }
+            }
+        }.resume()
     }
 }
 
