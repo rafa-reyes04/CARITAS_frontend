@@ -23,7 +23,7 @@ func verificarRegistro(idUsuario: Int, tituloEvento: String, completion: @escapi
     }
     
     // Solicitud GET de la API
-    let task = URLSession.shared.dataTask(with: url) { data, response, error in
+    let task = URLSession.shared.dataTask(with: url)    { data, response, error in
         if let error = error {
             print("Error en la solicitud: \(error.localizedDescription)")
             completion(false)
