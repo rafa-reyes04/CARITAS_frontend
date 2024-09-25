@@ -27,11 +27,8 @@ struct DetalleEvento: View {
                     }
                 }
                 .onAppear {
-                    verificarRegistro(idUsuario: usuario.id, tituloEvento: eventData.TITULO) { isRegistered in
-                        DispatchQueue.main.async {
-                            registered = isRegistered
-                        }
-                    }
+                    // Llamar al endpoint para verificar si está registrado
+                    verificarRegistro(idUsuario: usuario.id, idEvento: eventData.id)
                 }
             }
         }
@@ -109,10 +106,9 @@ struct DetalleEvento: View {
             if registered {
                 // Botón para eliminar el registro si el usuario ya está registrado
                 Button(action: {
-                    // Llamada para eliminar el registro
                     eliminarRegistro(idUsuario: usuario!.id, idEvento: eventData.id)
                 }) {
-                    Text("Eliminar Registro")
+                    Text("Cancelar Registro")
                         .font(.custom("SourceSansPro-Bold", size: 30))
                         .foregroundColor(.white)
                         .frame(maxWidth: 300)
@@ -123,7 +119,6 @@ struct DetalleEvento: View {
             } else {
                 // Botón para registrarse si el usuario no está registrado
                 Button(action: {
-                    // Llamada para registrarse al evento
                     registrarEvento(idUsuario: usuario!.id, idEvento: eventData.id)
                 }) {
                     Text("Registrarse")
@@ -140,9 +135,9 @@ struct DetalleEvento: View {
         .padding(.trailing, 40)
     }
     
-    //Funcion eliminar registro
-    private func eliminarRegistro(idUsuario: Int, idEvento: Int) {
-        guard let url = URL(string: "http://127.0.0.1:3000/cancelar_evento") else {
+    // Función para verificar si el usuario está registrado
+    private func verificarRegistro(idUsuario: Int, idEvento: Int) {
+        guard let url = URL(string: "http://127.0.0.1:3000/verificar_registro") else {
             print("URL inválida")
             return
         }
@@ -158,7 +153,53 @@ struct DetalleEvento: View {
         
         // Configurar la solicitud
         var request = URLRequest(url: url)
-        request.httpMethod = "POST"  // Usamos POST porque así está implementado en el servidor
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = jsonData
+        
+        // Hacer la solicitud
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                print("Error al verificar registro: \(error)")
+                return
+            }
+            
+            // Procesar la respuesta
+            if let data = data {
+                do {
+                    let decodedResponse = try JSONDecoder().decode([String: Bool].self, from: data)
+                    DispatchQueue.main.async {
+                        // Actualizar el estado de 'registered' con el valor retornado por el servidor
+                        if let isRegistered = decodedResponse["exists"] {
+                            self.registered = isRegistered
+                        }
+                    }
+                } catch {
+                    print("Error al decodificar JSON: \(error)")
+                }
+            }
+        }.resume()
+    }
+    
+    //Funcion eliminar registro
+    private func eliminarRegistro(idUsuario: Int, idEvento: Int) {
+        guard let url = URL(string: "http://127.0.0.1:3000/cancelar_registro") else {
+            print("URL inválida")
+            return
+        }
+
+        // Crear el cuerpo de la solicitud
+        let body: [String: Any] = [
+            "id_usuario": idUsuario,
+            "id_evento": idEvento
+        ]
+        
+        // Convertir el body a JSON
+        let jsonData = try? JSONSerialization.data(withJSONObject: body)
+        
+        // Configurar la solicitud
+        var request = URLRequest(url: url)
+        request.httpMethod = "DELETE"  // Usamos POST porque así está implementado en el servidor
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpBody = jsonData
         
