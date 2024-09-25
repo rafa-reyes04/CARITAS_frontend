@@ -22,6 +22,7 @@ struct DashboardView: View {
                         eventosViewModel.fetchEventosRegistrados(for: usuario.id)
                         //eventosViewModel.fetchEventos()
                     }
+                
 
                 VStack(alignment: .leading) {
                     Text("Mis Eventos")
