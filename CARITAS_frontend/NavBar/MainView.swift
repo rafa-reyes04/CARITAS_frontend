@@ -2,11 +2,11 @@ import SwiftUI
 
 struct MainView: View {
     @State private var selectedTab: Int = 0
-    let user: Usuario? = loadUser()
+    @StateObject var user = UserViewModel()
     
     var body: some View {
         VStack {
-
+            
             Spacer(minLength: 20)
             
             // La vista seleccionada se renderiza aquí.
@@ -64,6 +64,10 @@ struct MainView: View {
             .padding(.top, 20) // Ajusta el padding inferior para más espacio.
             .background(Color.white.shadow(radius: 10))
             .navigationBarBackButtonHidden(true)
+        }
+        .onAppear{
+            // Cargamos los datos del usuario que inició sesión
+            user.loadUser()
         }
         .edgesIgnoringSafeArea(.bottom)
     }

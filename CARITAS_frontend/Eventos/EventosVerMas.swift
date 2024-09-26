@@ -2,34 +2,32 @@ import SwiftUI
 
 struct DetalleEvento: View {
     let eventData: Evento
-    let usuario: Usuario? // Relacionamos con el usuario
+    @ObservedObject var usuario: UserViewModel // Relacionamos con el usuario
     @State private var registered: Bool = false
     @State private var imagenEvento: String = ""
     @State private var showingAlert: Bool = false
     @State private var alertMessage: String = ""
     
     var body: some View {
-        if let usuario = usuario {
-            NavigationView {
-                ZStack {
-                    Color(hex: "#D1E0D7").ignoresSafeArea()
-                    
-                    VStack(alignment: .leading, spacing: 20) {
-                        eventHeader
-                        eventImage
-                        eventDetails
-                        descriptionSection
-                        actionButton
-                    }
-                    .padding()
-                    .alert(isPresented: $showingAlert) {
-                        Alert(title: Text("Registro"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
-                    }
+        NavigationView {
+            ZStack {
+                Color(hex: "#D1E0D7").ignoresSafeArea()
+                
+                VStack(alignment: .leading, spacing: 20) {
+                    eventHeader
+                    eventImage
+                    eventDetails
+                    descriptionSection
+                    actionButton
                 }
-                .onAppear {
-                    // Llamar al endpoint para verificar si está registrado
-                    verificarRegistro(idUsuario: usuario.id, idEvento: eventData.id)
+                .padding()
+                .alert(isPresented: $showingAlert) {
+                    Alert(title: Text("Registro"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
                 }
+            }
+            .onAppear {
+                // Llamar al endpoint para verificar si está registrado
+                verificarRegistro(idUsuario: usuario.id, idEvento: eventData.id)
             }
         }
     }
@@ -106,7 +104,7 @@ struct DetalleEvento: View {
             if registered {
                 // Botón para eliminar el registro si el usuario ya está registrado
                 Button(action: {
-                    eliminarRegistro(idUsuario: usuario!.id, idEvento: eventData.id)
+                    eliminarRegistro(idUsuario: usuario.id, idEvento: eventData.id)
                 }) {
                     Text("Cancelar Registro")
                         .font(.custom("SourceSansPro-Bold", size: 30))
@@ -119,7 +117,7 @@ struct DetalleEvento: View {
             } else {
                 // Botón para registrarse si el usuario no está registrado
                 Button(action: {
-                    registrarEvento(idUsuario: usuario!.id, idEvento: eventData.id)
+                    registrarEvento(idUsuario: usuario.id, idEvento: eventData.id)
                 }) {
                     Text("Registrarse")
                         .font(.custom("SourceSansPro-Bold", size: 30))
@@ -312,15 +310,5 @@ struct DetailItem: View {
         PUNTOS: "10",
         TIPO_EVENTO: "Nutrición",
         TITULO: "Taller de Nutrición"
-    ), usuario: Usuario(
-        id: 100,
-        nombre: "Lucy",
-        aPaterno: "Fer",
-        aMaterno: "Asmodeus",
-        peso: 616.616,
-        altura: 616.616,
-        presion: "616/616",
-        puntaje: 616,
-        usuario: "616"
-    ))
+    ), usuario: UserViewModel())
 }

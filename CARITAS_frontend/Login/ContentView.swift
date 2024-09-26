@@ -81,6 +81,9 @@ struct ContentView: View {
     
     // Función para realizar la solicitud de login
     func loginUser(username: String, password: String) {
+        // Reseteamos los datos del usuario
+        UserDefaults.standard.removeObject(forKey: "usuarioLogeado")
+        
         guard let url = URL(string: "http://127.0.0.1:3000/login") else { return }
         
         // Crear el cuerpo de la solicitud con el usuario y la contraseña

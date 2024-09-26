@@ -15,7 +15,7 @@
 		FB6F28D92C6FAB0A00201296 /* CARITAS_frontendApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6F28D82C6FAB0A00201296 /* CARITAS_frontendApp.swift */; };
 		FB6F28DD2C6FAB0E00201296 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB6F28DC2C6FAB0E00201296 /* Assets.xcassets */; };
 		FB6F28E02C6FAB0E00201296 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB6F28DF2C6FAB0E00201296 /* Preview Assets.xcassets */; };
-		FBEE92D22CA2182900154469 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEE92D12CA2182100154469 /* UserData.swift */; };
+		FBEE92D22CA2182900154469 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEE92D12CA2182100154469 /* UserViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,7 +28,7 @@
 		FB6F28D82C6FAB0A00201296 /* CARITAS_frontendApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CARITAS_frontendApp.swift; sourceTree = "<group>"; };
 		FB6F28DC2C6FAB0E00201296 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FB6F28DF2C6FAB0E00201296 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		FBEE92D12CA2182100154469 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
+		FBEE92D12CA2182100154469 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -53,7 +53,7 @@
 		D085EA4D2C99BDCF006EA430 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				FBEE92D12CA2182100154469 /* UserData.swift */,
+				FBEE92D12CA2182100154469 /* UserViewModel.swift */,
 				FB45B1CD2CA1E2F100F1E269 /* isRegisteredInEvent.swift */,
 				D085EA4E2C99BDE3006EA430 /* UsuarioModel.swift */,
 				FB27674F2C9DC94700970DA0 /* EventosModel.swift */,
@@ -186,7 +186,7 @@
 				FB45B1CE2CA1E32B00F1E269 /* isRegisteredInEvent.swift in Sources */,
 				FB3C1A3C2C9DD49300911822 /* HexColor.swift in Sources */,
 				FB6F28D92C6FAB0A00201296 /* CARITAS_frontendApp.swift in Sources */,
-				FBEE92D22CA2182900154469 /* UserData.swift in Sources */,
+				FBEE92D22CA2182900154469 /* UserViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
