@@ -32,6 +32,7 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		FB213E9D2CA716CE00551F9A /* Retos */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Retos; sourceTree = "<group>"; };
 		FB27675A2C9DD12A00970DA0 /* Perfil */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Perfil; sourceTree = "<group>"; };
 		FB27675B2C9DD16D00970DA0 /* Tienda */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Tienda; sourceTree = "<group>"; };
 		FB27675C2C9DD19200970DA0 /* Login */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Login; sourceTree = "<group>"; };
@@ -87,8 +88,9 @@
 				FB27675C2C9DD19200970DA0 /* Login */,
 				FB3C1A3A2C9DD45C00911822 /* Eventos */,
 				FB2767622C9DD1BF00970DA0 /* NavBar */,
-				FB6F28D82C6FAB0A00201296 /* CARITAS_frontendApp.swift */,
+				FB213E9D2CA716CE00551F9A /* Retos */,
 				FB3C1A3B2C9DD49300911822 /* HexColor.swift */,
+				FB6F28D82C6FAB0A00201296 /* CARITAS_frontendApp.swift */,
 				FB6F28DC2C6FAB0E00201296 /* Assets.xcassets */,
 				FB6F28DE2C6FAB0E00201296 /* Preview Content */,
 			);
@@ -119,6 +121,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
+				FB213E9D2CA716CE00551F9A /* Retos */,
 				FB27675A2C9DD12A00970DA0 /* Perfil */,
 				FB27675B2C9DD16D00970DA0 /* Tienda */,
 				FB27675C2C9DD19200970DA0 /* Login */,

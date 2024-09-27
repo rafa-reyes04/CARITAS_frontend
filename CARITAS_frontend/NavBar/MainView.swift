@@ -14,8 +14,10 @@ struct MainView: View {
             case 0:
                 DashboardView(usuario: user)
             case 1:
-                TiendaView()
+                RetosView()
             case 2:
+                TiendaView()
+            case 3:
                 PerfilView()
             default:
                 DashboardView(usuario: user)
@@ -40,7 +42,7 @@ struct MainView: View {
                     selectedTab = 1
                 }) {
                     VStack {
-                        Image(systemName: "cart")
+                        Image(systemName: "figure.run")
                             .resizable()
                             .frame(width: 32, height: 32)
                             .foregroundColor(selectedTab == 1 ? Color(red: 0/255, green: 156/255, blue: 166/255) : .gray)
@@ -51,10 +53,21 @@ struct MainView: View {
                     selectedTab = 2
                 }) {
                     VStack {
-                        Image(systemName: "person.circle")
+                        Image(systemName: "cart")
                             .resizable()
                             .frame(width: 32, height: 32)
                             .foregroundColor(selectedTab == 2 ? Color(red: 0/255, green: 156/255, blue: 166/255) : .gray)
+                    }
+                }
+                Spacer()
+                Button(action: {
+                    selectedTab = 3
+                }) {
+                    VStack {
+                        Image(systemName: "person.circle")
+                            .resizable()
+                            .frame(width: 32, height: 32)
+                            .foregroundColor(selectedTab == 3 ? Color(red: 0/255, green: 156/255, blue: 166/255) : .gray)
                     }
                 }
                 Spacer()
