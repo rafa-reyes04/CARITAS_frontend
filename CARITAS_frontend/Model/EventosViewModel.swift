@@ -15,7 +15,7 @@ class EventosViewModel: ObservableObject {
 
     // Función que obtiene los eventos registrados por el usuario
     private func fetchEventosRegistrados(for usuarioId: Int) async {
-        let urlString = "http://127.0.0.1:3000/\(usuarioId)/mis-eventos"
+        let urlString = "http://10.14.255.65:10206/\(usuarioId)/mis-eventos"
         guard let url = URL(string: urlString) else { return }
 
         do {
@@ -31,7 +31,7 @@ class EventosViewModel: ObservableObject {
 
     // Función que obtiene todos los eventos disponibles
     private func fetchEventos() async {
-        guard let url = URL(string: "http://127.0.0.1:3000/events") else { return }
+        guard let url = URL(string: "http://10.14.255.65:10206/events") else { return }
 
         do {
             let (data, _) = try await URLSession.shared.data(from: url)
