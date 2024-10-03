@@ -7,7 +7,7 @@ struct MainView: View {
     var body: some View {
         VStack {
             
-            Spacer(minLength: 20)
+            
             
             // La vista seleccionada se renderiza aquí.
             switch selectedTab {
@@ -23,7 +23,6 @@ struct MainView: View {
                 DashboardView(usuario: user)
             }
             
-            Spacer(minLength: 40)
             
             HStack {
                 Spacer()

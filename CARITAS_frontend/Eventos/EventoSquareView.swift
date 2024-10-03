@@ -9,7 +9,7 @@ struct EventoSquareView: View {
             Image(imagenEventoSquare)
                 .resizable()
                 .aspectRatio(contentMode: .fill)
-                .frame(width: 130.0, height: 120)
+                .frame(width: 170.0, height: 150)
                 .cornerRadius(10)
                 .overlay(
                     RoundedRectangle(cornerRadius: 10)

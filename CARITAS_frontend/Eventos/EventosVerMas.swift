@@ -11,7 +11,7 @@ struct DetalleEvento: View {
     var body: some View {
         NavigationView {
             ZStack {
-                Color(hex: "#D1E0D7").ignoresSafeArea()
+                Color(hex: "#FFFFF").ignoresSafeArea()
                 
                 VStack(alignment: .leading, spacing: 20) {
                     eventHeader
@@ -36,13 +36,23 @@ struct DetalleEvento: View {
     }
     
     private var eventHeader: some View {
-        Text(eventData.TITULO)
-            .multilineTextAlignment(.center)
-            .padding(.leading, 85.0)
-            .padding(.top, 20)
-            .font(.largeTitle)
-            .fontWeight(.semibold)
-            .foregroundColor(Color(hex: "#3D3F40"))
+        ZStack{ 
+            
+            Rectangle()
+                .fill(Color(red: 0/255, green: 156/255, blue: 166/255))
+                .frame(height: 200)
+                .cornerRadius(30)
+            
+            Text(eventData.TITULO)
+                .multilineTextAlignment(.center)
+                .padding(.top, 80)
+                .font(.largeTitle)
+                .fontWeight(.semibold)
+                .foregroundColor(Color(hex: "#FFFFFF"))
+            
+        } .edgesIgnoringSafeArea(.top)
+            .padding(.bottom, -80)
+            
         
     }
     
