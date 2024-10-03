@@ -31,6 +31,7 @@ struct DetalleEvento: View {
             .onAppear {
                 // Llamar al endpoint para verificar si está registrado
                 verificarRegistro(idUsuario: usuario.id, idEvento: eventData.id)
+                
             }
         }
     }
@@ -61,7 +62,7 @@ struct DetalleEvento: View {
             Image(imagenEvento)
                 .resizable()
                 .aspectRatio(contentMode: .fill)
-                .frame(width: 370, height: 250)
+                .frame(width: 370, height: 230)
                 .clipShape(RoundedRectangle(cornerRadius: 30))
         }.padding(.leading, 40)
         .padding(.trailing, 40)
@@ -81,7 +82,7 @@ struct DetalleEvento: View {
         }
         .onAppear {
             if eventData.TIPO_EVENTO == "Nutrición" {
-                imagenEvento = "imagenNutricion"
+                imagenEvento = "Nutricion-Detalle"
             } else if eventData.TIPO_EVENTO == "Conferencia" {
                 imagenEvento = "imagenConferencia"
             } else if eventData.TIPO_EVENTO == "Revisión" {
@@ -137,7 +138,7 @@ struct DetalleEvento: View {
                         .foregroundColor(.white)
                         .frame(maxWidth: 380)
                         .padding()
-                        .background(Color(hex: "#00CF46")) // Botón verde para registrarse
+                        .background(Color(hex: "#008F46")) // Botón verde para registrarse
                         .cornerRadius(25)
                 }
             }
