@@ -21,11 +21,14 @@ struct DashboardView: View {
                     // Llama a la nueva función combinada de manera asíncrona
                     await eventosViewModel.fetchAllEventos(for: usuario.id)
                 }
+            
+            
 
             VStack(alignment: .leading) {
                 Text("Mis Eventos")
-                    .font(.headline)
-                    .padding(.leading, 40)
+                    .font(.title2)
+                    .bold()
+                    .padding(.leading, 20)
 
                 // Mostrar los eventos registrados
                 if eventosViewModel.eventosRegistrados.isEmpty {
@@ -45,10 +48,14 @@ struct DashboardView: View {
                     }
                 }
 
+                
+        
                 Text("Eventos Disponibles")
-                    .font(.headline)
-                    .padding(.leading, 40)
+                    .font(.title2)
+                    .bold()
+                    .padding(.leading, 20)
                     .padding(.top)
+                
 
                 // Mostrar todos los eventos disponibles
                 if eventosViewModel.eventos.isEmpty {
@@ -67,8 +74,10 @@ struct DashboardView: View {
                         .padding(.horizontal)
                     }
                 }
+            
             }
         }
+        Spacer()
     }
 }
 

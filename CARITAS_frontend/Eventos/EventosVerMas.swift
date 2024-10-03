@@ -18,9 +18,12 @@ struct DetalleEvento: View {
                     eventImage
                     eventDetails
                     descriptionSection
+                    Spacer()
                     actionButton
+                    Spacer()
                 }
-                .padding()
+                .padding(.leading, 20)
+                .padding(.trailing, 20)
                 .alert(isPresented: $showingAlert) {
                     Alert(title: Text("Registro"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
                 }
@@ -34,10 +37,13 @@ struct DetalleEvento: View {
     
     private var eventHeader: some View {
         Text(eventData.TITULO)
-            .padding(.leading, 30)
+            .multilineTextAlignment(.center)
+            .padding(.leading, 85.0)
             .padding(.top, 20)
-            .font(.custom("Lato-Bold", size: 30))
+            .font(.largeTitle)
+            .fontWeight(.semibold)
             .foregroundColor(Color(hex: "#3D3F40"))
+        
     }
     
     private var eventImage: some View {
@@ -45,7 +51,7 @@ struct DetalleEvento: View {
             Image(imagenEvento)
                 .resizable()
                 .aspectRatio(contentMode: .fill)
-                .frame(width: 320, height: 150)
+                .frame(width: 370, height: 250)
                 .clipShape(RoundedRectangle(cornerRadius: 30))
         }.padding(.leading, 40)
         .padding(.trailing, 40)
@@ -59,15 +65,9 @@ struct DetalleEvento: View {
                 DetailItem(title: "Hora", value: eventData.HORA)
                 Spacer()
                 DetailItem(title: "Cupo", value: eventData.CUPO)
-            }
-            HStack {
-                Text(registered ? "Registrado" : "")
-                    .font(.custom("Avenir-Heavy", size: 30))
-                    .foregroundColor(Color(hex: "#5AB159"))
-                    .padding(.leading, 50)
                 Spacer()
                 DetailItem(title: "Puntos", value: eventData.PUNTOS)
-            }.padding(.top, 20)
+            }
         }
         .onAppear {
             if eventData.TIPO_EVENTO == "Nutrición" {
@@ -82,21 +82,24 @@ struct DetalleEvento: View {
         }
         .padding(.leading, 40)
         .padding(.trailing, 40)
+        .padding(.bottom, 20)
+        .padding(.top, 10)
     }
     
     private var descriptionSection: some View {
         VStack(alignment: .leading, spacing: 10) {
             Text("Descripción")
-                .font(.custom("Lato-Bold", size: 25))
+                .font(.system(size: 24))
                 .foregroundColor(Color(hex: "#3D3F40"))
-                .bold()
+                .fontWeight(.semibold)
             
             Text(eventData.DESCRIPCION)
-                .font(.custom("Lato-Regular", size: 16))
+                .font(.custom("Lato-Regular", size: 18))
                 .foregroundColor(Color(hex: "#3D3F40"))
+            
         }
-        .padding(.leading, 40)
-        .padding(.trailing, 40)
+        .padding(.leading, 50)
+        .padding(.trailing, 50)
     }
     
     private var actionButton: some View {
@@ -109,7 +112,7 @@ struct DetalleEvento: View {
                     Text("Cancelar Registro")
                         .font(.custom("SourceSansPro-Bold", size: 30))
                         .foregroundColor(.white)
-                        .frame(maxWidth: 300)
+                        .frame(maxWidth: 380)
                         .padding()
                         .background(Color(hex: "#FF7375")) // Botón rojo para eliminar
                         .cornerRadius(25)
@@ -122,7 +125,7 @@ struct DetalleEvento: View {
                     Text("Registrarse")
                         .font(.custom("SourceSansPro-Bold", size: 30))
                         .foregroundColor(.white)
-                        .frame(maxWidth: 300)
+                        .frame(maxWidth: 380)
                         .padding()
                         .background(Color(hex: "#00CF46")) // Botón verde para registrarse
                         .cornerRadius(25)
@@ -291,12 +294,16 @@ struct DetailItem: View {
     var body: some View {
         VStack {
             Text(title)
-                .font(.custom("Lato-Bold", size: 20))
+                .fontWeight(.semibold)
                 .foregroundColor(Color(hex: "#3D3F40"))
+                .font(.system(size: 22))
+                .padding(.bottom, 3)
+            
             Text(value)
-                .font(.custom("Lato-Regular", size: 16))
+                .font(.custom("Lato-Regular", size: 18))
                 .foregroundColor(Color(hex: "#3D3F40"))
-        }
+        }.padding(.leading, 5)
+        .padding(.trailing, 5)
     }
 }
 
