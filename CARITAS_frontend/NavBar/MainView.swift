@@ -23,7 +23,6 @@ struct MainView: View {
                 DashboardView(usuario: user)
             }
             
-            
             HStack {
                 Spacer()
                 Button(action: {
