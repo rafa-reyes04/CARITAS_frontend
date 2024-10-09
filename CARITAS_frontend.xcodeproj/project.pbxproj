@@ -10,6 +10,8 @@
 		D062AADC2CB56C8500106806 /* RetosModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D062AADB2CB56C7C00106806 /* RetosModel.swift */; };
 		D062AAE02CB56CBF00106806 /* RetosViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D062AADF2CB56CBA00106806 /* RetosViewModel.swift */; };
 		D085EA4F2C99BDE3006EA430 /* UsuarioModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D085EA4E2C99BDE3006EA430 /* UsuarioModel.swift */; };
+		D0B49BFB2CB6F8410090A181 /* RecompensasModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B49BFA2CB6F83B0090A181 /* RecompensasModel.swift */; };
+		D0B49BFD2CB6F8670090A181 /* RecompensasViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B49BFC2CB6F8620090A181 /* RecompensasViewModel.swift */; };
 		FB2767502C9DC94700970DA0 /* EventosModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB27674F2C9DC94700970DA0 /* EventosModel.swift */; };
 		FB2767522C9DC97D00970DA0 /* EventosViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2767512C9DC97D00970DA0 /* EventosViewModel.swift */; };
 		FB3C1A3C2C9DD49300911822 /* HexColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3C1A3B2C9DD49300911822 /* HexColor.swift */; };
@@ -24,6 +26,8 @@
 		D062AADB2CB56C7C00106806 /* RetosModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetosModel.swift; sourceTree = "<group>"; };
 		D062AADF2CB56CBA00106806 /* RetosViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetosViewModel.swift; sourceTree = "<group>"; };
 		D085EA4E2C99BDE3006EA430 /* UsuarioModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsuarioModel.swift; sourceTree = "<group>"; };
+		D0B49BFA2CB6F83B0090A181 /* RecompensasModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecompensasModel.swift; sourceTree = "<group>"; };
+		D0B49BFC2CB6F8620090A181 /* RecompensasViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecompensasViewModel.swift; sourceTree = "<group>"; };
 		FB27674F2C9DC94700970DA0 /* EventosModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventosModel.swift; sourceTree = "<group>"; };
 		FB2767512C9DC97D00970DA0 /* EventosViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventosViewModel.swift; sourceTree = "<group>"; };
 		FB3C1A3B2C9DD49300911822 /* HexColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HexColor.swift; sourceTree = "<group>"; };
@@ -65,6 +69,8 @@
 				FB2767512C9DC97D00970DA0 /* EventosViewModel.swift */,
 				D062AADB2CB56C7C00106806 /* RetosModel.swift */,
 				D062AADF2CB56CBA00106806 /* RetosViewModel.swift */,
+				D0B49BFA2CB6F83B0090A181 /* RecompensasModel.swift */,
+				D0B49BFC2CB6F8620090A181 /* RecompensasViewModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -193,9 +199,11 @@
 				D062AAE02CB56CBF00106806 /* RetosViewModel.swift in Sources */,
 				D062AADC2CB56C8500106806 /* RetosModel.swift in Sources */,
 				FB2767502C9DC94700970DA0 /* EventosModel.swift in Sources */,
+				D0B49BFB2CB6F8410090A181 /* RecompensasModel.swift in Sources */,
 				D085EA4F2C99BDE3006EA430 /* UsuarioModel.swift in Sources */,
 				FB45B1CE2CA1E32B00F1E269 /* isRegisteredInEvent.swift in Sources */,
 				FB3C1A3C2C9DD49300911822 /* HexColor.swift in Sources */,
+				D0B49BFD2CB6F8670090A181 /* RecompensasViewModel.swift in Sources */,
 				FB6F28D92C6FAB0A00201296 /* CARITAS_frontendApp.swift in Sources */,
 				FBEE92D22CA2182900154469 /* UserViewModel.swift in Sources */,
 			);
