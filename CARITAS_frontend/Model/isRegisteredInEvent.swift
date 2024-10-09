@@ -11,7 +11,7 @@ import Foundation
 
 func verificarRegistro(idUsuario: Int, tituloEvento: String, completion: @escaping (Bool) -> Void) {
     // EndPoint de la API
-    let urlString = "http://10.14.255.65:10206/\(idUsuario)/mis-eventos"
+    let urlString = "https://realmadswift.tc2007b.tec.mx:10206/\(idUsuario)/mis-eventos"
     
     // El guard solo continúa la ejecución de esta función si la URL es válida
     // Intenta establecer el valor de la variable url. Si lo consigue, prosigue,

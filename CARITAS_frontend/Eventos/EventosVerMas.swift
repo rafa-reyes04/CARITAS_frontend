@@ -149,7 +149,7 @@ struct DetalleEvento: View {
     
     // Función para verificar si el usuario está registrado
     private func verificarRegistro(idUsuario: Int, idEvento: Int) {
-        guard let url = URL(string: "http://10.14.255.65:10206/verificar_registro") else {
+        guard let url = URL(string: "https://realmadswift.tc2007b.tec.mx:10206/verificar_registro") else {
             print("URL inválida")
             return
         }
@@ -195,7 +195,7 @@ struct DetalleEvento: View {
     
     //Funcion eliminar registro
     private func eliminarRegistro(idUsuario: Int, idEvento: Int) {
-        guard let url = URL(string: "http://10.14.255.65:10206/cancelar_registro") else {
+        guard let url = URL(string: "https://realmadswift.tc2007b.tec.mx:10206/cancelar_registro") else {
             print("URL inválida")
             return
         }
@@ -244,7 +244,7 @@ struct DetalleEvento: View {
     
     // Función para registrar al usuario en el evento
     private func registrarEvento(idUsuario: Int, idEvento: Int) {
-        guard let url = URL(string: "http://10.14.255.65:10206/registrar_evento") else {
+        guard let url = URL(string: "https://realmadswift.tc2007b.tec.mx:10206/registrar_evento") else {
             print("URL inválida")
             return
         }

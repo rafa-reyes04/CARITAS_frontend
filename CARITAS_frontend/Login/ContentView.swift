@@ -84,7 +84,7 @@ struct ContentView: View {
         // Reseteamos los datos del usuario
         UserDefaults.standard.removeObject(forKey: "usuarioLogeado")
         
-        guard let url = URL(string: "http://10.14.255.65:10206/login") else { return }
+        guard let url = URL(string: "https://realmadswift.tc2007b.tec.mx:10206/login") else { return }
         
         // Crear el cuerpo de la solicitud con el usuario y la contraseña
         let body: [String: String] = ["usuario": username, "contrasena": password]

@@ -133,7 +133,7 @@ struct DetalleReto: View {
     
     // Función para verificar si el usuario está registrado
     private func verificarRegistroReto(idUsuario: Int, idReto: Int) {
-        guard let url = URL(string: "http://10.14.255.65:10206/verificar_reto") else {
+        guard let url = URL(string: "https://realmadswift.tc2007b.tec.mx:10206/verificar_reto") else {
             print("URL inválida")
             return
         }
@@ -179,7 +179,7 @@ struct DetalleReto: View {
     
     //Funcion eliminar registro
     private func eliminarRegistroReto(idUsuario: Int, idReto: Int) {
-        guard let url = URL(string: "http://10.14.255.65:10206/cancelar_reto") else {
+        guard let url = URL(string: "https://realmadswift.tc2007b.tec.mx:10206/cancelar_reto") else {
             print("URL inválida")
             return
         }
@@ -228,7 +228,7 @@ struct DetalleReto: View {
     
     // Función para registrar al usuario en el evento
     private func registrarReto(idUsuario: Int, idReto: Int) {
-        guard let url = URL(string: "http://10.14.255.65:10206/registrar_reto") else {
+        guard let url = URL(string: "https://realmadswift.tc2007b.tec.mx:10206/registrar_reto") else {
             print("URL inválida")
             return
         }

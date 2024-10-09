@@ -15,7 +15,7 @@ class RetosViewModel: ObservableObject {
 
     // Función que obtiene los eventos registrados por el usuario
     private func fetchRetosRegistrados(for usuarioId: Int) async {
-        let urlString = "http://127.0.0.1:3000/\(usuarioId)/mis-retos"
+        let urlString = "https://realmadswift.tc2007b.tec.mx:10206/\(usuarioId)/mis-retos"
         guard let url = URL(string: urlString) else { return }
 
         do {
@@ -31,7 +31,7 @@ class RetosViewModel: ObservableObject {
 
     // Función que obtiene todos los eventos disponibles
     private func fetchRetos() async {
-        guard let url = URL(string: "http://127.0.0.1:3000/retos") else { return }
+        guard let url = URL(string: "https://realmadswift.tc2007b.tec.mx:10206/retos") else { return }
 
         do {
             let (data, _) = try await URLSession.shared.data(from: url)
