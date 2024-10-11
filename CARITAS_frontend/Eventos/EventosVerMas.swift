@@ -2,11 +2,12 @@ import SwiftUI
 
 struct DetalleEvento: View {
     let eventData: Evento
-    @ObservedObject var usuario: UserViewModel // Relacionamos con el usuario
+    @ObservedObject var usuario: UserViewModel
     @State private var registered: Bool = false
     @State private var imagenEvento: String = ""
     @State private var showingAlert: Bool = false
     @State private var alertMessage: String = ""
+    @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
         NavigationView {
@@ -28,10 +29,19 @@ struct DetalleEvento: View {
                     Alert(title: Text("Registro"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
                 }
             }
+            .navigationBarBackButtonHidden(true)
+            .navigationBarItems(leading: Button(action: {
+                presentationMode.wrappedValue.dismiss()
+            }) {
+                HStack {
+                    Image(systemName: "chevron.left")
+                        .foregroundColor(.white)
+                    Text("Atrás")
+                        .foregroundColor(.white)
+                        .fontWeight(.bold)                }
+            })
             .onAppear {
-                // Llamar al endpoint para verificar si está registrado
                 verificarRegistro(idUsuario: usuario.id, idEvento: eventData.id)
-                
             }
         }
     }

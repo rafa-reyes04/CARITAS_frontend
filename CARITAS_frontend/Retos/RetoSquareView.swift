@@ -5,7 +5,7 @@ struct RetoSquareView: View {
 
     var body: some View {
         VStack {
-            Image("RetoImagen")
+            Image("Reto-Icono")
                 .resizable()
                 .aspectRatio(contentMode: .fill)
                 .frame(width: 170.0, height: 150)

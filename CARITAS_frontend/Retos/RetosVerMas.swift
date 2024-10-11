@@ -7,6 +7,7 @@ struct DetalleReto: View {
     @State private var imagenEvento: String = ""
     @State private var showingAlert: Bool = false
     @State private var alertMessage: String = ""
+    @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
         NavigationView {
@@ -16,10 +17,13 @@ struct DetalleReto: View {
                 VStack(alignment: .leading, spacing: 20) {
                     retoHeader
                     retoImage
-                    retoDetails
-                    descriptionSection
+                    HStack{
+                        descriptionSection
+                        retoDetails
+                    }
                     Spacer()
                     actionButton
+                    Spacer()
                     Spacer()
                 }
                 .padding(.leading, 20)
@@ -28,6 +32,17 @@ struct DetalleReto: View {
                     Alert(title: Text("Registro"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
                 }
             }
+            .navigationBarBackButtonHidden(true)
+            .navigationBarItems(leading: Button(action: {
+                presentationMode.wrappedValue.dismiss()
+            }) {
+                HStack {
+                    Image(systemName: "chevron.left")
+                        .foregroundColor(.white)
+                    Text("Atrás")
+                        .foregroundColor(.white)
+                        .fontWeight(.bold)                }
+            })
             .onAppear {
                 // Llamar al endpoint para verificar si está registrado
                 verificarRegistroReto(idUsuario: usuario.id, idReto: retoData.id)
@@ -59,7 +74,7 @@ struct DetalleReto: View {
     
     private var retoImage: some View {
         HStack(alignment: .center) {
-            Image("RetoImagen")
+            Image("Reto-Icono")
                 .resizable()
                 .aspectRatio(contentMode: .fill)
                 .frame(width: 370, height: 230)
@@ -71,7 +86,6 @@ struct DetalleReto: View {
     private var retoDetails: some View {
         VStack {
             HStack {
-                Spacer()
                 DetailItemReto(title: "Puntos", value: retoData.PUNTAJE)
             }
         }
@@ -94,7 +108,7 @@ struct DetalleReto: View {
             
         }
         .padding(.leading, 50)
-        .padding(.trailing, 50)
+
     }
     
     private var actionButton: some View {

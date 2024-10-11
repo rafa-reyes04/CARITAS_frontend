@@ -120,8 +120,8 @@ struct ContentView: View {
                                 nombre: userData["NOMBRE"] as? String ?? "",
                                 aPaterno: userData["A_PATERNO"] as? String ?? "",
                                 aMaterno: userData["A_MATERNO"] as? String ?? "",
-                                peso: userData["PESO"] as? Float ?? 0.0,
-                                altura: userData["ALTURA"] as? Float ?? 0.0,
+                                peso: userData["PESO"] as? Double ?? 0.0,
+                                altura: userData["ALTURA"] as? Double ?? 0.0,
                                 presion: userData["PRESION"] as? String ?? "",
                                 puntaje: Int(userData["PUNTAJE"] as? String ?? "0") ?? 0,
                                 usuario: userData["USUARIO"] as? String ?? ""

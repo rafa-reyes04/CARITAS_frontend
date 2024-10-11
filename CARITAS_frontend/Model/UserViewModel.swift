@@ -10,8 +10,8 @@ import Combine
 class UserViewModel: ObservableObject {
     @Published var id: Int = 0
     @Published var nombre: String = ""
-    @Published var peso: Float = 0.0
-    @Published var altura: Float = 0.0
+    @Published var peso: Double = 0.0
+    @Published var altura: Double = 0.0
     @Published var presion: String = ""
     @Published var puntaje: Int = 0
     @Published var aMaterno: String = ""

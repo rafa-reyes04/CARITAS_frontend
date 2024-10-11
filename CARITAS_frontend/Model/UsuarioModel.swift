@@ -12,8 +12,8 @@ struct Usuario: Codable {
     var nombre: String
     var aPaterno: String
     var aMaterno: String
-    var peso: Float
-    var altura: Float
+    var peso: Double
+    var altura: Double
     var presion: String
     var puntaje: Int
     var usuario: String

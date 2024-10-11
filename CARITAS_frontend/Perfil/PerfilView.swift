@@ -3,8 +3,8 @@ import SwiftUI
 struct PerfilView: View {
     @State var userID: String = ""
     @State var nombre: String = "Nombre Del Usuario"
-    @State var peso: Float = 0.0
-    @State var altura: Float = 0.0
+    @State var peso: Double = 0.0
+    @State var altura: Double = 0.0
     @State var presion: String = ""
     @State private var qrImage: UIImage? = nil
     @State private var isLoading: Bool = true // Controla si la vista está lista para mostrarse
