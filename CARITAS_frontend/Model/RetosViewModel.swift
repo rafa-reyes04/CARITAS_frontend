@@ -10,7 +10,7 @@ class RetosViewModel: ObservableObject {
         await fetchRetosRegistrados(for: usuarioId)
         
         // Llamada para obtener todos los eventos
-        await fetchRetos()
+        await fetchRetos(for: usuarioId)
     }
 
     // Función que obtiene los eventos registrados por el usuario
@@ -30,8 +30,8 @@ class RetosViewModel: ObservableObject {
     }
 
     // Función que obtiene todos los eventos disponibles
-    private func fetchRetos() async {
-        guard let url = URL(string: "https://realmadswift.tc2007b.tec.mx:10206/retos") else { return }
+    private func fetchRetos(for usuarioId: Int) async {
+        guard let url = URL(string: "https://realmadswift.tc2007b.tec.mx:10206/\(usuarioId)/retos") else { return }
 
         do {
             let (data, _) = try await URLSession.shared.data(from: url)

@@ -6,60 +6,57 @@ struct TiendaView: View {
     @State private var usuarioId: Int = 0
 
     var body: some View {
-        NavigationView {
-            VStack {
-                // Header con título y puntos del usuario
+        VStack {
+            // Header con título y puntos del usuario
+            HStack {
+                Text("Tienda")
+                    .font(.title)
+                    .fontWeight(.bold)
+                    .foregroundColor(.white)
+                    .padding([.leading, .bottom, .trailing])
+
+                Spacer()
                 HStack {
-                    Text("Tienda")
-                        .font(.title)
+                    Image(systemName: "star.fill")
+                        .font(.title2)
+                        .foregroundColor(.yellow)
+
+                    Text("\(puntosDisponibles)")
+                        .font(.title2)
                         .fontWeight(.bold)
                         .foregroundColor(.white)
-                        .padding([.leading, .bottom, .trailing])
-
-                    Spacer()
-                    HStack {
-                        Image(systemName: "star.fill")
-                            .font(.title2)
-                            .foregroundColor(.yellow)
-
-                        Text("\(puntosDisponibles)")
-                            .font(.title2)
-                            .fontWeight(.bold)
-                            .foregroundColor(.white)
-                    }
-                    .padding([.leading, .bottom, .trailing])
                 }
-                .padding([.horizontal, .top], 16)
-                .background(Color(red: 0/255, green: 156/255, blue: 166/255))
-
-                // Scroll de recompensas
-                ScrollView {
-                    VStack(spacing: 16) {
-                        ForEach(viewModel.recompensas, id: \.nombre) { recompensa in
-                            RewardCardView(
-                                title: recompensa.nombre,
-                                subtitle: "\(recompensa.costo) puntos",
-                                stock: "\(recompensa.restantes) disponibles",
-                                comprado: recompensa.comprado,
-                                idRecompensa: recompensa.id,
-                                idUsuario: usuarioId,
-                                recompensas: $viewModel.recompensas,
-                                onCompraExitosa: { actualizarPuntosUsuario() }
-                            )
-                        }
-                    }
-                    .padding(.horizontal, 16)
-                }
-                .padding(.top)
+                .padding([.leading, .bottom, .trailing])
             }
-            .navigationBarHidden(true)
-            .onAppear {
-                cargarUsuarioDesdeUserDefaults()
-                actualizarPuntosUsuario()
-                
-                Task {
-                    await viewModel.fetchRecompensas(for: usuarioId)
+            .padding([.horizontal, .top], 16)
+            .background(Color(red: 0/255, green: 156/255, blue: 166/255))
+
+            // Scroll de recompensas
+            ScrollView {
+                VStack(spacing: 16) {
+                    ForEach(viewModel.recompensas, id: \.nombre) { recompensa in
+                        RewardCardView(
+                            title: recompensa.nombre,
+                            subtitle: "\(recompensa.costo) puntos",
+                            stock: "\(recompensa.restantes) disponibles",
+                            comprado: recompensa.comprado,
+                            idRecompensa: recompensa.id,
+                            idUsuario: usuarioId,
+                            recompensas: $viewModel.recompensas,
+                            onCompraExitosa: { actualizarPuntosUsuario() }
+                        )
+                    }
                 }
+                .padding(.horizontal, 16)
+            }
+            .padding(.top)
+        }
+        .onAppear {
+            cargarUsuarioDesdeUserDefaults()
+            actualizarPuntosUsuario()
+            
+            Task {
+                await viewModel.fetchRecompensas(for: usuarioId)
             }
         }
     }

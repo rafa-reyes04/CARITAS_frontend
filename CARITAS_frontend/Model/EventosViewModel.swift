@@ -10,7 +10,7 @@ class EventosViewModel: ObservableObject {
         await fetchEventosRegistrados(for: usuarioId)
         
         // Llamada para obtener todos los eventos
-        await fetchEventos()
+        await fetchEventos(for: usuarioId)
     }
 
     // Función que obtiene los eventos registrados por el usuario
@@ -30,8 +30,8 @@ class EventosViewModel: ObservableObject {
     }
 
     // Función que obtiene todos los eventos disponibles
-    private func fetchEventos() async {
-        guard let url = URL(string: "https://realmadswift.tc2007b.tec.mx:10206/events") else { return }
+    private func fetchEventos(for usuarioId: Int) async {
+        guard let url = URL(string: "https://realmadswift.tc2007b.tec.mx:10206/\(usuarioId)/events") else { return }
 
         do {
             let (data, _) = try await URLSession.shared.data(from: url)
