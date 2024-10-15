@@ -18,6 +18,7 @@ struct MainView: View {
             case 2:
                 TiendaView()
             case 3:
+                Spacer()
                 PerfilView()
             default:
                 DashboardView(usuario: user)

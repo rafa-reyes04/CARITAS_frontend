@@ -94,11 +94,11 @@ struct DetalleEvento: View {
             if eventData.TIPO_EVENTO == "Nutrición" {
                 imagenEvento = "Nutricion-Detalle"
             } else if eventData.TIPO_EVENTO == "Conferencia" {
-                imagenEvento = "imagenConferencia"
+                imagenEvento = "Conferencia-Detalle"
             } else if eventData.TIPO_EVENTO == "Revisión" {
-                imagenEvento = "imagenRevision"
+                imagenEvento = "Revision-Detalle"
             } else if eventData.TIPO_EVENTO == "Ejercicio" {
-                imagenEvento = "imagenEjercicio"
+                imagenEvento = "Ejercicio-Detalle"
             }
         }
         .padding(.leading, 40)
@@ -336,7 +336,7 @@ struct DetailItem: View {
         FECHA: "2024-10-05",
         HORA: "10:00:00",
         PUNTOS: "10",
-        TIPO_EVENTO: "Nutrición",
+        TIPO_EVENTO: "Ejercicio",
         TITULO: "Taller de Nutrición"
     ), usuario: UserViewModel())
 }

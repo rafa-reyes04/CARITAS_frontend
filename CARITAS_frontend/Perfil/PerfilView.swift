@@ -15,6 +15,7 @@ struct PerfilView: View {
                 // Mostrar una vista de carga mientras se obtienen los datos del usuario
                 ProgressView("Cargando datos del usuario...")
                     .font(.headline)
+                Spacer()
             } else {
                 // Mostrar la vista del perfil solo cuando los datos hayan sido cargados
                 SuperiorPerfilView(nombrePerfil: nombre)
@@ -56,6 +57,7 @@ struct PerfilView: View {
                 Spacer()
                 Spacer()
                 Spacer()
+                
             }
         }
         .onAppear {
